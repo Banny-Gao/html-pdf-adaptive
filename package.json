@@ -1,0 +1,30 @@
+{
+  "name": "html-pdf-adaptive",
+  "version": "0.0.1",
+  "description": "html to pdf",
+  "main": "src/html2pdf.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mackkkk/html2PDF.git"
+  },
+  "keywords": [
+    "html",
+    "pdf",
+    "html2pdf",
+    "jspdf",
+    "jsPDF",
+    "PDF"
+  ],
+  "author": "mackkkk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mackkkk/html2PDF/issues"
+  },
+  "homepage": "https://github.com/Mackkkk/html2PDF#readme"
+}
