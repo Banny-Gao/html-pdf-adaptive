@@ -2,7 +2,7 @@
   "name": "html-pdf-adaptive",
   "version": "1.0.0",
   "description": "html to pdf",
-  "main": "src/html2pdf.js",
+  "main": "dist/html-pdf-adaptive.js",
   "directories": {
     "example": "example"
   },
