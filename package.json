@@ -1,13 +1,15 @@
 {
   "name": "html-pdf-adaptive",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "html to pdf",
   "main": "src/html2pdf.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "rollup -w -c scripts/config.js --environment TARGET:dev-cjs",
+    "build": "rollup -c scripts/config.js --environment TARGET:prod-cjs",
+    "build:umd": "rollup -c scripts/config.js --environment TARGET:prod-umd"
   },
   "repository": {
     "type": "git",
@@ -26,5 +28,23 @@
   "bugs": {
     "url": "https://github.com/Mackkkk/html2PDF/issues"
   },
-  "homepage": "https://github.com/Mackkkk/html2PDF#readme"
+  "homepage": "https://github.com/Mackkkk/html2PDF#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/helpers": "^7.9.2",
+    "@babel/plugin-external-helpers": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@rollup/plugin-alias": "^3.1.0",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "rollup": "^2.6.1",
+    "rollup-plugin-analyzer": "^3.2.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  },
+  "dependencies": {
+    "html2canvas": "^1.0.0-rc.5",
+    "jspdf": "^1.5.3"
+  }
 }
