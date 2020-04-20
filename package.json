@@ -1,6 +1,6 @@
 {
   "name": "html-pdf-adaptive",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "html to pdf",
   "main": "dist/html-pdf-adaptive.js",
   "directories": {
