@@ -1033,8 +1033,7 @@ var getPageSize = (function () {
 });
 
 var bodyObserver = null;
-
-var appendChild = function appendChild(element) {
+var appendChild = (function (element) {
   var parentNode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.body;
   return new Promise(function (resolve) {
     bodyObserver = new MutationObserver(function () {
@@ -1047,7 +1046,7 @@ var appendChild = function appendChild(element) {
     });
     parentNode.append(element);
   });
-};
+});
 
 var elementToCanvas = /*#__PURE__*/(function () {
   var _ref = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(element, width) {
@@ -1233,8 +1232,7 @@ var addBlank = (function (pdf, x, y, width, height) {
 });
 
 var headerCache;
-
-var addHeader = /*#__PURE__*/function () {
+var addHeader = /*#__PURE__*/(function () {
   var _ref = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(pdf, x, y, width, $header) {
     var isUseCache,
         useCORS,
@@ -1287,14 +1285,13 @@ var addHeader = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function addHeader(_x, _x2, _x3, _x4, _x5) {
+  return function (_x, _x2, _x3, _x4, _x5) {
     return _ref.apply(this, arguments);
   };
-}();
+})();
 
 var footerCache;
-
-var addFooter = /*#__PURE__*/function () {
+var addFooter = /*#__PURE__*/(function () {
   var _ref = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(pdf, x, y, width, $footer) {
     var isUseCache,
         useCORS,
@@ -1352,10 +1349,10 @@ var addFooter = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function addFooter(_x, _x2, _x3, _x4, _x5) {
+  return function (_x, _x2, _x3, _x4, _x5) {
     return _ref.apply(this, arguments);
   };
-}();
+})();
 
 var drawPage = /*#__PURE__*/(function () {
   var _ref2 = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(_ref, fn) {
@@ -2248,3 +2245,4 @@ var html2pdf = /*#__PURE__*/(function () {
 })();
 
 module.exports = html2pdf;
+//# sourceMappingURL=html-pdf-adaptive-rc.js.map

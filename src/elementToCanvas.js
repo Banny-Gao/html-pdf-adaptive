@@ -1,7 +1,5 @@
 import html2canvas from 'html2canvas'
-import {
-  appendChild,
-} from './appendChild'
+import appendChild from './appendChild'
 
 export default async (element, width, isAppend = false, useCORS = false) => {
   isAppend && (await appendChild(element))

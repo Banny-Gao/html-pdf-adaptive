@@ -5,6 +5,7 @@ const cjs = require("@rollup/plugin-commonjs")
 const node = require("@rollup/plugin-node-resolve")
 const analyze = require('rollup-plugin-analyzer')
 const uglify = require('rollup-plugin-uglify').uglify
+const serve = require('rollup-plugin-serve')
 const version = process.env.VERSION || require("../package.json").version
 
 const banner =
@@ -29,7 +30,21 @@ const builds = {
     dest: resolve("dist/html-pdf-adaptive-rc.js"),
     format: "cjs",
     env: "development",
-    plugins: [node(), cjs()],
+    plugins: [node(), cjs(), serve({
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      contentBase: resolve('dist'),
+      port: 8848,
+      host: 'localhost',
+      open: true,
+      verbose: true,
+      openPage: '/html-pdf-adaptive-rc.js',
+    })],
+    cache: true,
+    clearScreen: true,
+    sourcemap: true,
+    external: ['html2canvas', 'jspdf'],
     banner,
   },
   "prod-umd": {
@@ -38,6 +53,7 @@ const builds = {
     format: "umd",
     env: "production",
     plugins: [node(), cjs(), uglify()],
+    compact: true,
     banner,
   },
   "prod-cjs": {
@@ -45,7 +61,28 @@ const builds = {
     dest: resolve("dist/html-pdf-adaptive.js"),
     format: "cjs",
     env: "production",
-    plugins: [node(), cjs()],
+    plugins: [node(), cjs(), uglify()],
+    compact: true,
+    external: ['html2canvas', 'jspdf'],
+    banner,
+  },
+  "prod-amd": {
+    entry: resolve("src/index.js"),
+    dest: resolve("dist/html-pdf-adaptive.amd.js"),
+    format: "amd",
+    env: "production",
+    plugins: [node(), cjs(), uglify()],
+    compact: true,
+    banner,
+  },
+  "prod-es": {
+    entry: resolve("src/index.js"),
+    dest: resolve("dist/html-pdf-adaptive.es.js"),
+    format: "cjs",
+    env: "production",
+    plugins: [node(), cjs(), uglify()],
+    compact: true,
+    external: ['html2canvas', 'jspdf'],
     banner,
   },
 }
@@ -54,8 +91,8 @@ function genConfig(name) {
   const opts = builds[name]
   const external = opts.external ? opts.external : []
   const config = {
-    input: opts.entry,
-    external: [...external, 'html2canvas', 'jspdf'],
+    input: opts.entry, // 入口文件  Type: string | string [] | { [entryName: string]: string }
+    external,  // 外部依赖 Type: string[] | (id: string, parentId: string, isResolved: boolean) => boolean
     plugins: [
       alias(Object.assign({}, aliases, opts.alias)),
       babel({
@@ -63,11 +100,24 @@ function genConfig(name) {
       }),
       analyze(),
     ].concat(opts.plugins || []),
+    cache: !!opts.cache,
     output: {
       file: opts.dest,
-      format: opts.format,
+      format: opts.format,  // amd, cjs, es, umd, iife, system
       banner: opts.banner,
-      name: opts.moduleName || "html2PDF",
+      name: opts.moduleName || "html2PDF",  // Necessary for iife/umd bundles, 全局变量
+      globals: opts.globals, // globals: { jquery: '$'}
+      compact: !!opts.compact, // 预缩代码
+      extend: true,  // global.name = global.name || {}
+      interop: true, // 在导入外部依赖（external）时，在default和named exports有必要是区分是，设置独立变量
+      paths: {
+        // lodash: 'https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js'
+      }, // 定义依赖加载方式
+      sourcemap: !!opts.sourcemap,
+    },
+    manualChunks: {}, // 共享依赖chunks，necessary for @rollup/plugin-node-resolve 
+    watch: {
+      clearScreen: !!opts.clearScreen,
     },
   }
 

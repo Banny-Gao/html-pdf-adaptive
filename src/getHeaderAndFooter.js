@@ -1,6 +1,4 @@
-import {
-  appendChild,
-} from './appendChild'
+import appendChild from './appendChild'
 import getNodeComputedStyles from './getNodeComputedStyles'
 
 export default async (

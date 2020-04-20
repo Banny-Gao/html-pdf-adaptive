@@ -1,6 +1,6 @@
 let bodyObserver = null
 
-const appendChild = (element, parentNode = document.body) =>
+export default (element, parentNode = document.body) =>
   new Promise((resolve) => {
     bodyObserver = new MutationObserver(() => {
       resolve()
@@ -12,8 +12,3 @@ const appendChild = (element, parentNode = document.body) =>
     })
     parentNode.append(element)
   })
-
-  export {
-    bodyObserver,
-    appendChild,
-  }

@@ -1,10 +1,6 @@
 import addBlank from './addBlank'
-import {
-  addHeader
-} from './addHeader'
-import {
-  addFooter
-} from './addFooter'
+import addHeader from './addHeader'
+import addFooter from './addFooter'
 import getHeaderAndFooter from './getHeaderAndFooter'
 
 export default async (

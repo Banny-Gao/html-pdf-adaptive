@@ -1,7 +1,7 @@
 import elementToCanvas from './elementToCanvas'
 
 let footerCache
-const addFooter =  async (
+export default async (
   pdf,
   x,
   y,
@@ -24,9 +24,4 @@ const addFooter =  async (
     pdf.addImage(data, "JPEG", x, y - height - 1, width, height + 2)
   }
   footerCache = footer
-}
-
-export {
-  footerCache,
-  addFooter,
 }

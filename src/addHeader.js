@@ -1,7 +1,7 @@
 import elementToCanvas from './elementToCanvas'
 
 let headerCache
-const addHeader =  async (
+export default async (
   pdf,
   x,
   y,
@@ -21,9 +21,4 @@ const addHeader =  async (
   const { height, data } = header
   if (height) pdf.addImage(data, "JPEG", x, y, width, height)
   headerCache = header
-}
-
-export {
-  headerCache,
-  addHeader,
 }
