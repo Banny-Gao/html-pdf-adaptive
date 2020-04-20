@@ -9,7 +9,7 @@ npm i html-pdf-adaptive --save
 or
 
 ```html
-<script src="https://unpkg.com/html-pdf-adaptive@0.0.1/src/html2pdf.js"></script>
+<script src="https://unpkg.com/html-pdf-adaptive@1.0.1/src/html2pdf.min.js"></script>
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ document.querySelector("#renderPdf").addEventListener("click", () => {
 or
 
 ```html
-<script src="https://unpkg.com/html-pdf-adaptive@0.0.1/src/html2pdf.js"></script>
+<script src="https://unpkg.com/html-pdf-adaptive@1.0.1/src/html2pdf.js"></script>
 <script>
 window.onload = function () {
     const el = document.querySelector('.container')
@@ -34,7 +34,7 @@ window.onload = function () {
         window.html2PDF(el, {
             mode: 'adaptive',
             pagesplit: true,
-            position: {
+            offset: {
                 x: 20,
                 y: 20
             },
@@ -94,7 +94,3 @@ onProgress(output) {}
 ## Return
 
 > Promise {\<resolved>: undefined}
-
-## License
-
-[ISC](https://choosealicense.com/licenses/isc/)
